@@ -7,8 +7,8 @@ const morgan = require('morgan')
 
 
 //all controllers 
-const userController = require('./controllers/user.controller/user.controller.creation')
-const controllers = require("./controllers/index");
+// const userController = require('./controllers/user.controller/user.controller.creation')
+// const controllers = require("./controllers/index");
 
 
 
