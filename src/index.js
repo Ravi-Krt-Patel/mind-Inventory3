@@ -19,7 +19,7 @@ app.use(cors())
 app.use(morgan('dev'))
 app.use(express.urlencoded({extended:false}))
 
-db.sequelize.sync()
+db.sequelize.sync({force: true})
 
 
 //calling controller

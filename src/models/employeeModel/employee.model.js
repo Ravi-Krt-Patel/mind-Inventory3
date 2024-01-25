@@ -3,6 +3,11 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize, Sequelize) =>{
   const Employee = sequelize.define('EmployeesMindInventory', {
+    employee_Id:{
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -41,7 +46,7 @@ module.exports = (sequelize, Sequelize) =>{
       type: DataTypes.STRING,
       allowNull: false
     },
-    totalAvailableLeave: {
+    total_available_leave: {
       type: DataTypes.NUMBER,
       allowNull: false
     }

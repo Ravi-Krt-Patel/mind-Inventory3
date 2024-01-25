@@ -1,5 +1,4 @@
 const { Sequelize } = require('sequelize');
-const allModels = require('../models')
 require('dotenv').config();
 
 const databaseName = process.env.DATABASENAME
@@ -11,10 +10,10 @@ const password = process.env.PASSWORD
 //     dialect:'mysql' /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
 //   })
 
-      const sequelize = new Sequelize({
-        dialect: 'sqlite',
-        storage: '/home/jignesh/Project/backend_new/fb/db.sqlite3'
-      });
+const sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage: '/home/jignesh/Project/backend_new/fb/db.sqlite3'
+});
 
 sequelize.authenticate()
 .then(() => {
@@ -30,6 +29,8 @@ db.Sequelize = Sequelize
 db.sequelize = sequelize
 
 //module - table 
-db.employee = require('../models/employeeModel')
+db.employee = require('../models/employeeModel/employee.model')(sequelize, Sequelize)
+db.leave = require('../models/leaveModel/leave.model')(sequelize, Sequelize)
+db.depatment = require('../models/deparmentMode/department.model')(sequelize, Sequelize)
 
 module.exports = db;
