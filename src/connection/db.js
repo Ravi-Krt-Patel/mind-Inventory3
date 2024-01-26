@@ -30,7 +30,36 @@ db.sequelize = sequelize
 
 //module - table 
 db.employee = require('../models/employeeModel/employee.model')(sequelize, Sequelize)
-db.leave = require('../models/leaveModel/leave.model')(sequelize, Sequelize)
+db.leave = require('../models/leaveModel/leave.model')(sequelize,Sequelize)
 db.depatment = require('../models/deparmentMode/department.model')(sequelize, Sequelize)
+db.applyLeave = require('../models/leaveModel/applyLeave.model')(sequelize, Sequelize)
+
+
+//employee and apply leave relationship
+db.employee.hasMany(db.applyLeave, {
+  foreignKey: 'employee_Id',
+  as: 'ApplyLeaveMindInventory'
+} )
+db.applyLeave.belongsTo(db.employee, {
+  foreignKey: 'employee_Id',
+  as : 'EmployeesMindInventory'
+})
+
+//employee and deparment relationship
+db.depatment.hasMany(db.employee, {
+  foreignKey: 'department_Id',
+  as: 'EmployeesMindInventory'
+})
+db.employee.belongsTo(db.depatment, {
+  foreignKey: 'department_Id',
+  as: 'DeparmentMindInventory'
+})
+
+//employee and leave relationship
+db.employee.hasOne(db.leave, {
+  foreignKey: 'employee_Id'
+})
+db.leave.belongsTo(db.employee)
+
 
 module.exports = db;

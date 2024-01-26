@@ -9,6 +9,7 @@ const morgan = require('morgan')
 //all controllers 
 // const userController = require('./controllers/user.controller/user.controller.creation')
 // const controllers = require("./controllers/index");
+const employeeControoler = require('./controllers/employee.controller')
 
 
 
@@ -19,12 +20,13 @@ app.use(cors())
 app.use(morgan('dev'))
 app.use(express.urlencoded({extended:false}))
 
-db.sequelize.sync({force: true})
+db.sequelize.sync()
 
 
 //calling controller
 // app.use('/user', controllers.userController.userCreation)
 // app.use('/product', controllers.productController.productCreation)
+app.use('/api/v1', employeeControoler)
 
 const port = 2323;
 app.listen(port, async()=>{

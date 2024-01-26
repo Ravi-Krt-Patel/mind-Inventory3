@@ -4,9 +4,10 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize, Sequelize) =>{
   const Employee = sequelize.define('EmployeesMindInventory', {
     employee_Id:{
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true
+      type: DataTypes.STRING,
+      allowNull: false,
+      //autoIncrement: true,
+      // primaryKey: true
     },
     firstName: {
       type: DataTypes.STRING,
@@ -16,7 +17,7 @@ module.exports = (sequelize, Sequelize) =>{
           // if (value === null && this.age !== 10) {
           //   throw new Error("name can't be null unless age is 10");
           // }
-          if (value.length < 5) {
+          if (value.length < 4) {
             throw new Error("frist name should be atleast 8 charecters");
           }
         }
@@ -43,12 +44,12 @@ module.exports = (sequelize, Sequelize) =>{
       allowNull: false,
     },
     salary: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    total_available_leave: {
       type: DataTypes.NUMBER,
-      allowNull: false
+      defaultValue: 0
+    },
+    role: {
+      type: DataTypes.STRING,
+      defaultValue: 'user'
     }
   }, {
     // freezeTableName: true,
