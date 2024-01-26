@@ -3,12 +3,9 @@ const db = require("./connection/db")
 const cors = require('cors')
 const helmat = require('helmet')
 const morgan = require('morgan')
-//create table not exist
 
 
 //all controllers 
-// const userController = require('./controllers/user.controller/user.controller.creation')
-// const controllers = require("./controllers/index");
 const employeeControoler = require('./controllers/employee.controller')
 
 
@@ -24,8 +21,6 @@ db.sequelize.sync()
 
 
 //calling controller
-// app.use('/user', controllers.userController.userCreation)
-// app.use('/product', controllers.productController.productCreation)
 app.use('/api/v1', employeeControoler)
 
 const port = 2323;
