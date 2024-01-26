@@ -98,7 +98,7 @@ router.post("/employee-leave",authenticator, async (req, res) => {
     try {
         const { userData } = req
         const { message } = req.body
-        const keywordArr = message?.split(" ")
+        const keywordArr = message?.toLowerCase().split(" ")
         const data = await sequelize.query(
             `SELECT total_provided_leave, total_taken_leave, total_availble_leave  FROM EmployeesMindInventory INNER JOIN LeaveMindInventory ON EmployeesMindInventory.employee_Id = LeaveMindInventory.employee_Id WHERE EmployeesMindInventory.employee_Id = ?`,
             {
@@ -107,14 +107,14 @@ router.post("/employee-leave",authenticator, async (req, res) => {
             }
         )
 
-        if(keywordArr.includes('Leave') || keywordArr.includes('leave')){
-            if(keywordArr.includes('total') || keywordArr.includes('Total')){
+        if(keywordArr.includes('leave')){
+            if(keywordArr.includes('total')){
                 res.status(200).json({data: data.total_provided_leave})
             }
-            if(keywordArr.includes('left') || keywordArr.includes('Left') || keywordArr.includes('available') || keywordArr.includes('Available')){
+            if(keywordArr.includes('left')  || keywordArr.includes('available') ){
                 res.status(200).json({data: data.total_availble_leave})
             }
-            if(keywordArr.includes('taken') || keywordArr.includes('Taken')){
+            if(keywordArr.includes('taken') ){
                 res.status(200).json({data: data.total_taken_leave})
             }
         }
